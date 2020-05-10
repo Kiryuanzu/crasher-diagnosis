@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "crasher-diagnosis"
+    }
+  },
+  "defaultProject": "crasher-diagnosis",
+  "cli": {
+    "analytics": "7e24ff4a-8978-4a85-9e0c-e5b04141c91d"
+  }
 }
