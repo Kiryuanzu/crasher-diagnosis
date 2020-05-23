@@ -1,1 +1,11 @@
-<p>question works!</p>
+<h1>サークルクラッシャー診断</h1>
+<div *ngIf="currentQuestion as question">
+  {{ question.id }}
+  {{ question.content }}
+  <div *ngIf="currentIndex() != 0">
+    <button (click)="back()">前へ</button>
+  </div>
+  <div *ngIf="currentIndex() != questions.length - 1">
+    <button (click)="next()">次へ</button>
+  </div>
+</div>
