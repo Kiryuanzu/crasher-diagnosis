@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Question } from '../question';
-import { QUESTIONS } from '../question-mock';
-import { identifierModuleUrl } from '@angular/compiler';
+import { QUESTIONS } from '../question-data';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-question',
@@ -10,6 +10,9 @@ import { identifierModuleUrl } from '@angular/compiler';
 })
 export class QuestionComponent implements OnInit {
   questions = QUESTIONS;
+  form = new FormGroup({
+    point: new FormControl(''),
+  });
   constructor() {}
 
   currentQuestion: Question;
@@ -21,7 +24,12 @@ export class QuestionComponent implements OnInit {
     return this.questions.indexOf(this.currentQuestion);
   }
   next() {
+    if (this.form.value.point == '') {
+      alert('選択肢が入力されていません');
+      return;
+    }
     this.currentQuestion = this.questions[this.currentIndex() + 1];
+    this.form.setValue({ point: '' });
   }
 
   back() {

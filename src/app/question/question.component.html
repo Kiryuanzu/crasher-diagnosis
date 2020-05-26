@@ -2,6 +2,15 @@
 <div *ngIf="currentQuestion as question">
   {{ question.id }}
   {{ question.content }}
+  <form [formGroup]="form">
+    <input type="radio" formControlName="point" value="4" />あてはまる
+    <input type="radio" formControlName="point" value="3" />
+    どちらかかと言えばあてはまる
+    <input type="radio" formControlName="point" value="2" />
+    どちらかといえばあてはまらない
+    <input type="radio" formControlName="point" value="1" />
+    あてはまらない
+  </form>
   <div *ngIf="currentIndex() > 0">
     <button (click)="back()">前へ</button>
   </div>
