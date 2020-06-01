@@ -1,13 +1,31 @@
-<h1>サークルクラッシャー診断</h1>
-<div *ngIf="currentQuestion as question">
-  {{ question.id }}/24
-  {{ question.content }}
-  <button (click)="select(4)">あてはまる</button>
-  <button (click)="select(3)">どちらかかと言えばあてはまる</button>
-  <button (click)="select(2)">どちらかかと言えばあてはまる</button>
-  <button (click)="select(1)">どちらかかと言えばあてはまる</button>
-</div>
-<div *ngIf="resultOn">
-  <p>{{ result.title }}</p>
-  <p>{{ result.description }}</p>
+<h1 class="o-diagnosis-title">サークルクラッシャー診断</h1>
+<div class="o-diagnosis-content">
+  <div *ngIf="currentQuestion as question">
+    <p class="m-question-content">Q,{{ question.id }} {{ question.content }}</p>
+    <div class="o-btn-list">
+      <div class="m-btn__block">
+        <button (click)="select(4)" class="btn-border">あてはまる</button>
+      </div>
+      <div class="m-btn__block">
+        <button (click)="select(3)" class="btn-border">
+          どちらかかと言えばあてはまる
+        </button>
+      </div>
+      <div class="m-btn__block">
+        <button (click)="select(2)" class="btn-border">
+          どちらかかと言えばあてはまる
+        </button>
+      </div>
+      <div class="m-btn__block">
+        <button (click)="select(1)" class="btn-border">
+          どちらかかと言えばあてはまる
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="resultOn">
+    <p>{{ result.title }}</p>
+    <p>{{ result.description }}</p>
+    <a (click)="reStart()" class="a-restart-btn">もう一度診断する</a>
+  </div>
 </div>

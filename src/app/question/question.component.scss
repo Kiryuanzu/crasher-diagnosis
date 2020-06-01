@@ -1,0 +1,54 @@
+.o-diagnosis-title {
+  text-align: center;
+  font-family: "M PLUS 1p", sans-serif;
+}
+
+.o-diagnosis-content {
+  margin: auto;
+  max-width: 50%;
+}
+
+.o-btn-list {
+  max-width: 50%;
+  margin: auto;
+}
+
+.m-btn__block {
+  margin-bottom: 1rem;
+}
+
+.m-question-number {
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.m-question-content {
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.a-restart-btn {
+  padding: 5px;
+  border: 1px solid;
+  border-radius: 5px;
+}
+
+.btn-border {
+  display: inline-block;
+  max-width: 180px;
+  text-align: left;
+  border: 2px solid #1ba1de;
+  font-size: 16px;
+  color: #1ba1de;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: 0.4s;
+}
+
+.btn-border:hover {
+  background-color: #008fd0;
+  border-color: #008fd0;
+  color: #fff;
+}

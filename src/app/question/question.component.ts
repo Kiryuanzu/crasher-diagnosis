@@ -35,6 +35,11 @@ export class QuestionComponent implements OnInit {
     return this.questions.indexOf(this.currentQuestion);
   }
 
+  reStart() {
+    this.resultOn = false;
+    this.ngOnInit();
+  }
+
   select(point: number) {
     if (this.currentQuestion.type == 'A') {
       this.typeANum += point;
