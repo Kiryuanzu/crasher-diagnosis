@@ -121,6 +121,10 @@
               "devServerTarget": "crasher-diagnosis:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     }
