@@ -4,6 +4,7 @@ import { Result } from '../result';
 import { RESULTS } from '../result-data';
 import { QUESTIONS } from '../question-data';
 import { FormControl, FormGroup } from '@angular/forms';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -16,6 +17,8 @@ export class QuestionComponent implements OnInit {
   typeBNum = 0;
   typeCNum = 0;
 
+  resultImageUrl: string;
+
   resultOn: boolean;
   questions = QUESTIONS;
   result: Result;
@@ -24,7 +27,7 @@ export class QuestionComponent implements OnInit {
     point: new FormControl(''),
   });
 
-  constructor() {}
+  constructor(private storage: AngularFireStorage) {}
 
   currentQuestion: Question;
   ngOnInit(): void {
@@ -37,6 +40,9 @@ export class QuestionComponent implements OnInit {
 
   reStart() {
     this.resultOn = false;
+    this.typeANum = 0;
+    this.typeBNum = 0;
+    this.typeCNum = 0;
     this.ngOnInit();
   }
 
@@ -56,49 +62,66 @@ export class QuestionComponent implements OnInit {
       this.resultOn = true;
       if (20 <= this.typeANum && 20 <= this.typeBNum && 20 <= this.typeCNum) {
         this.result = this.results.find((result) => result.type == 'A');
-      } else if (
-        20 <= this.typeANum &&
-        20 <= this.typeBNum &&
-        20 >= this.typeCNum
-      ) {
-        this.result = this.results.find((result) => result.type == 'B');
-      } else if (
-        20 <= this.typeANum &&
-        this.typeBNum <= 20 &&
-        this.typeCNum <= 20
-      ) {
-        this.result = this.results.find((result) => result.type == 'C');
-      } else if (
-        this.typeANum <= 20 &&
-        20 <= this.typeBNum &&
-        this.typeCNum <= 20
-      ) {
-        this.result = this.results.find((result) => result.type == 'D');
-      } else if (
-        this.typeANum <= 20 &&
-        20 <= this.typeBNum &&
-        20 <= this.typeCNum
-      ) {
-        this.result = this.results.find((result) => result.type == 'E');
-      } else if (
-        this.typeANum <= 20 &&
-        this.typeBNum <= 20 &&
-        20 <= this.typeCNum
-      ) {
-        this.result = this.results.find((result) => result.type == 'F');
-      } else if (
-        20 <= this.typeANum &&
-        this.typeBNum <= 20 &&
-        20 <= this.typeCNum
-      ) {
-        this.result = this.results.find((result) => result.type == 'G');
-      } else if (
-        this.typeANum <= 20 &&
-        this.typeBNum <= 20 &&
-        this.typeCNum <= 20
-      ) {
-        this.result = this.results.find((result) => result.type == 'H');
+        this.fetchResultImage(this.result.imgUrl);
       }
+    } else if (
+      20 <= this.typeANum &&
+      20 <= this.typeBNum &&
+      20 >= this.typeCNum
+    ) {
+      this.result = this.results.find((result) => result.type == 'B');
+      this.fetchResultImage(this.result.imgUrl);
+    } else if (
+      20 <= this.typeANum &&
+      this.typeBNum <= 20 &&
+      this.typeCNum <= 20
+    ) {
+      this.result = this.results.find((result) => result.type == 'C');
+      this.fetchResultImage(this.result.imgUrl);
+    } else if (
+      this.typeANum <= 20 &&
+      20 <= this.typeBNum &&
+      this.typeCNum <= 20
+    ) {
+      this.result = this.results.find((result) => result.type == 'D');
+      this.fetchResultImage(this.result.imgUrl);
+    } else if (
+      this.typeANum <= 20 &&
+      20 <= this.typeBNum &&
+      20 <= this.typeCNum
+    ) {
+      this.result = this.results.find((result) => result.type == 'E');
+      this.fetchResultImage(this.result.imgUrl);
+    } else if (
+      this.typeANum <= 20 &&
+      this.typeBNum <= 20 &&
+      20 <= this.typeCNum
+    ) {
+      this.result = this.results.find((result) => result.type == 'F');
+      this.fetchResultImage(this.result.imgUrl);
+    } else if (
+      20 <= this.typeANum &&
+      this.typeBNum <= 20 &&
+      20 <= this.typeCNum
+    ) {
+      this.result = this.results.find((result) => result.type == 'G');
+      this.fetchResultImage(this.result.imgUrl);
+    } else if (
+      this.typeANum <= 20 &&
+      this.typeBNum <= 20 &&
+      this.typeCNum <= 20
+    ) {
+      this.result = this.results.find((result) => result.type == 'H');
+      this.fetchResultImage(this.result.imgUrl);
     }
+  }
+
+  fetchResultImage(imgUrl: string) {
+    this.storage
+      .ref(imgUrl)
+      .getDownloadURL()
+      .subscribe((image) => {
+        this.resultImageUrl = image;
+      });
   }
 }

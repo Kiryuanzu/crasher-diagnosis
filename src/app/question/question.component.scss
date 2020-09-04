@@ -1,3 +1,11 @@
+.t-diagnosis-template {
+  width: 60%;
+  min-height: 100vh;
+  margin: auto;
+  background-color: white;
+  padding: 7px;
+}
+
 .o-diagnosis-title {
   text-align: center;
   font-family: "M PLUS 1p", sans-serif;
@@ -9,8 +17,11 @@
 }
 
 .o-btn-list {
-  max-width: 50%;
-  margin: auto;
+  margin-left: 3rem;
+}
+
+.o-result-block {
+  display: flex;
 }
 
 .m-btn__block {
@@ -33,6 +44,11 @@
   border-radius: 5px;
 }
 
+.a-result-image {
+  height: auto;
+  width: 100%;
+}
+
 .btn-border {
   display: inline-block;
   max-width: 180px;
@@ -40,6 +56,7 @@
   border: 2px solid #1ba1de;
   font-size: 16px;
   color: #1ba1de;
+  background-color: #fff;
   text-decoration: none;
   font-weight: bold;
   padding: 8px 16px;
